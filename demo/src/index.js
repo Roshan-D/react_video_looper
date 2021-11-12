@@ -6,7 +6,14 @@ import VideoLooper from '../../src'
 import { Editor } from './editor.js'
 import { Choose } from './chooseVideo.js'
 import useFormData from 'react-use-form-data'
-import sample from '/Users/rohoswagger/Documents/macarthur bates/action words/blow.mp4';
+
+//Video URL
+// 
+import sample from './alligator.mp4';
+
+
+// TTD:
+// Figure out how to access the end of any given mp4 video; this will allow for infinite looping of any video without configuration
 
 export default function Demo() {
 
@@ -23,7 +30,7 @@ export default function Demo() {
     <div>
       <GlobalStyle></GlobalStyle>
       <Editor {...formData} updateFormData={updateFormData} initialFormData={isInitialDataForPlaceholder && initialFormData}></Editor>
-      <VideoLooper source={formData.sampleVideo} start={Number(formData.start)} end={Number(formData.end)}/>
+      <VideoLooper source={formData.sampleVideo} start={Number(formData.start)} end={Number(formData.end)} isDebugMode={formData.isDebugMode}/>
       <Choose {...formData} updateFormData={updateFormData} initialFormData={isInitialDataForPlaceholder && initialFormData}></Choose>
     </div>
   )
