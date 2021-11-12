@@ -2,23 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-export const Editor = (props) => {
+export const Choose = (props) => {
   
   return (
       <div>
-        <EditorButton type='button' onClick={(evt) => props.updateFormData('isEditorActive', evt)}>{props.isEditorActive ? 'Close' : 'Editor'}</EditorButton>
-        <EditorPanel isEditorActive={props.isEditorActive}>
+        <ChooseButton type='button' onClick={(evt) => props.updateFormData('isChooseActive', evt)}>{props.isChooseActive ? 'Close' : 'Video'}</ChooseButton>
+        <ChoosePanel isChooseActive={props.isChooseActive}>
           <label>Start of loop<input type='number' value={props.start} onChange={(evt) => props.updateFormData('start', evt)} placeholder={props.initialFormData && props.initialFormData.start}></input></label>
           <label>End of loop<input type='number' value={props.end} onChange={(evt) => props.updateFormData('end', evt)} placeholder={props.initialFormData && props.initialFormData.end}></input></label>
           {/* <label>Debug<input type='checkbox' checked={props.isDebugMode} onChange={(evt) => props.updateFormData('isDebugMode', evt)}></input></label> */}
           {/* <label>Split view<input type='checkbox' checked={props.isSplitView} onChange={(evt) => props.updateFormData('isSplitView', evt)} disabled={!props.isDebugMode}></input></label> */}
-        </EditorPanel>
+        </ChoosePanel>
       </div>
   )
 }
 
-Editor.propTypes = {
+Choose.propTypes = {
   isEditorActive: PropTypes.bool,
+  isChooseActive: PropTypes.bool,
   isDebugMode: PropTypes.bool,
   isSplitView: PropTypes.bool,
   startPlaceholder: PropTypes.number,
@@ -26,11 +27,11 @@ Editor.propTypes = {
   updateState: PropTypes.func
 }
 
-const EditorButton = styled.button`
+const ChooseButton = styled.button`
   z-index:1;
   position: absolute;
   top:2em;
-  right:2em;
+  left:2em;
   min-width: 52px;
   color: grey;
   background: rgba(255,255,255,0.1);
@@ -43,11 +44,11 @@ const EditorButton = styled.button`
   }
 `;
 
-const EditorPanel = styled.div`
+const ChoosePanel = styled.div`
   position: absolute;
-  display: ${props => (props.isEditorActive ? 'block' : 'none')};
+  display: ${props => (props.isChooseActive ? 'block' : 'none')};
   top:4em;
-  right:2em;
+  left:2em;
   padding: 1em;
   z-index:1;
   background: rgba(255,255,255,0.1);

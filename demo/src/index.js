@@ -4,24 +4,27 @@ import {render} from 'react-dom'
 import { createGlobalStyle } from 'styled-components'
 import VideoLooper from '../../src'
 import { Editor } from './editor.js'
+import { Choose } from './chooseVideo.js'
 import useFormData from 'react-use-form-data'
+import sample from '/Users/rohoswagger/Documents/macarthur bates/action words/blow.mp4';
 
 export default function Demo() {
 
   const [formData, updateFormData, initialFormData, isInitialDataForPlaceholder] = useFormData({ 
-    sampleVideo: 'https://lewhunt.github.io/assets/fitness/squats-720p.mp4',
-    start: 4.31,
-    end: 9.48,
+    sampleVideo: sample,
+    start: 0.0,
+    end: 2.0,
     isEditorActive: false,
+    isChooseActive: false,
     isDebugMode: true,
-    isSplitView: false
   }, true);
  
   return (
     <div>
       <GlobalStyle></GlobalStyle>
       <Editor {...formData} updateFormData={updateFormData} initialFormData={isInitialDataForPlaceholder && initialFormData}></Editor>
-      <VideoLooper source={formData.sampleVideo} start={Number(formData.start)} end={Number(formData.end)} isDebugMode={formData.isDebugMode} isSplitView={formData.isSplitView} />
+      <VideoLooper source={formData.sampleVideo} start={Number(formData.start)} end={Number(formData.end)}/>
+      <Choose {...formData} updateFormData={updateFormData} initialFormData={isInitialDataForPlaceholder && initialFormData}></Choose>
     </div>
   )
   
